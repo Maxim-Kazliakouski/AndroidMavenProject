@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="1" guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [Tests SauceLabs]">
+  <listeners>
+    <listener class-name="tests.base.AnnotationTransformer"/>
+    <listener class-name="tests.base.TestListener"/>
+  </listeners>
+  <test thread-count="1" verbose="0" name="SauceLabs: base test(failed)">
+    <classes>
+      <class name="tests.LoginTest">
+        <methods>
+          <include name="setup"/>
+          <include name="testAppOpen"/>
+        </methods>
+      </class> <!-- tests.LoginTest -->
+    </classes>
+  </test> <!-- SauceLabs: base test(failed) -->
+</suite> <!-- Failed suite [Tests SauceLabs] -->
