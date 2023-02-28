@@ -38,6 +38,7 @@ pipeline {
 					script {
 						try {
 						// Launching android emulator
+						sh "ls -la"
 						bat "emulator_launcher.bat"
                         } catch (Exception error) {
                         unstable('Can not launch emulator...')
