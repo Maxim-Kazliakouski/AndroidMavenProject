@@ -34,7 +34,8 @@
                 <configuration>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectjweaverVersion}/aspectjweaver-${aspectjweaverVersion}.jar"
-                        -Xmx256m
+                        -Xmx1024m
+                        -XX:MaxPermSize=256m
                     </argLine>
                     <suiteXmlFiles>
                         <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
