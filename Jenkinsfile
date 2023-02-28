@@ -60,7 +60,7 @@ pipeline {
                             // Run Maven on a Unix agent.
                             // sh "mvn clean -Dsurefire.suiteXmlFiles=src/test/resources/chromeLaunchTest.xml \
                             // To run Maven on a Windows agent, use
-                            bat "mvn clean '-Dsurefire.suiteXmlFiles=src/test/resources/launchTest.xml' test"
+                            bat "mvn clean -Dsurefire.suiteXmlFiles=src/test/resources/launchTest.xml test"
 
                     }
 					catch (Exception error)
