@@ -24,6 +24,6 @@ hs_err_pid*
 
 # hidden files and folders
 build/
-.idea/
+.idea/*
 target/
 *.iml
