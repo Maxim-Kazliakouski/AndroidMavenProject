@@ -63,7 +63,8 @@ pipeline {
                       //      string(
                       //          credentialsId: 'qase_password',
                       //          variable: 'PASSWORD_CREDENTIALS')
-                      //  ]) {
+                      //  ])
+                      {
 
                             // Run Maven on a Unix agent.
                             // sh "mvn clean -Dsurefire.suiteXmlFiles=src/test/resources/chromeLaunchTest.xml \
