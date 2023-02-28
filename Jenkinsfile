@@ -38,7 +38,7 @@ pipeline {
 					script {
 						try {
 						// Launching android emulator
-						bat " cd \\emulator>emulator -avd Pixel_5_API_29"
+						bat "emulator_launcher.bat"
                         } catch (Exception error) {
                         unstable('Can not launch emulator...')
 						}
