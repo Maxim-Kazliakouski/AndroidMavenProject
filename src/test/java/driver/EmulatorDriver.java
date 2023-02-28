@@ -98,10 +98,7 @@ public class EmulatorDriver implements WebDriverProvider {
 //        desiredCapabilities.setCapability("isHeadless", true);
 //        desiredCapabilities.setCapability("avdArgs", "-no-window");
 //        desiredCapabilities.setCapability("noReset", true);
-        desiredCapabilities.setCapability("enableVNC", true);
-        desiredCapabilities.setCapability("enableVideo", true);
-//        desiredCapabilities.setCapability("app", getAbsolutePath());
-//        desiredCapabilities.setCapability("app", getAbsolutePath());
+        desiredCapabilities.setCapability("app", getAbsolutePath());
 //      строка для локального запуска
         driver = new AndroidDriver<>(getUrl(), desiredCapabilities);
         return driver;
