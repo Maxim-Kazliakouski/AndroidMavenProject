@@ -36,13 +36,12 @@ pipeline {
             stage('Launching android emulator'){
                 steps{
 					script {
-						try {
+						//try {
 						// Launching android emulator
-						sh "ls -la"
 						bat "emulator_launcher.bat"
-                        } catch (Exception error) {
-                        unstable('Can not launch emulator...')
-						}
+                        //} catch (Exception error) {
+                        //unstable('Can not launch emulator...')
+						//}
 					}
 				}
 			}
