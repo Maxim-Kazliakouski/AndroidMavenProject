@@ -57,30 +57,15 @@ pipeline {
                         // Get some code from a GitHub repository
                         git branch: "${params.BRANCH}",  url: 'https://github.com/Maxim-Kazliakouski/AndroidMavenProject.git'
 
-                      //  withCredentials ([
-                      //      string(credentialsId: 'qase_token',
-                      //  variable: 'TOKEN_CREDENTIALS'),
-                      //      string(
-                      //          credentialsId: 'qase_password',
-                      //          variable: 'PASSWORD_CREDENTIALS')
-                      //  ])
                       {
-
                             // Run Maven on a Unix agent.
                             // sh "mvn clean -Dsurefire.suiteXmlFiles=src/test/resources/chromeLaunchTest.xml \
                             // To run Maven on a Windows agent, use
                             bat "mvn clean '-Dsurefire.suiteXmlFiles=src/test/resources/launchTest.xml' test"
-            //    -P UI -Dbrowser=$BROWSER \
-            //    -DbrowserVersion=$VERSION \
-            //   -DvideoTestRecord=$VIDEO_TEST_RECORD \
-            //    -Dheadless=$HEADLESS \
-            //    -Dqase.username=$USERNAME \
-            //    -Dqase.password=$PASSWORD_CREDENTIALS \
-            //    -Dtoken=$TOKEN_CREDENTIALS \
-            //    -DtestRun=$TESTRUN \
-            //    -DcodeProject=$CODEPROJECT test"
                         }
-                    } catch (Exception error) {
+                    }
+					catch (Exception error)
+					{
                         unstable('Testing failed')
                     }
                 }
