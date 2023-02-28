@@ -4,13 +4,10 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import driver.EmulatorHelper;
 import io.appium.java_client.MobileBy;
-import io.appium.java_client.TouchAction;
-import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 import static org.openqa.selenium.By.xpath;
-import static org.testng.Assert.assertEquals;
 
 public class LoginPage {
 
