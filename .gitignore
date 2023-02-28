@@ -23,6 +23,7 @@
 hs_err_pid*
 
 # hidden files and folders
+allure-results/*
 .allure/*
 .idea/*
 build/
