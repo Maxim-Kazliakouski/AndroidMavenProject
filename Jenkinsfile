@@ -35,7 +35,7 @@ pipeline {
 
             stage('Launching android emulator'){
                 steps{
-					script {
+					//script {
 						//try {
 						sh 'pwsh --version'
 						// Launching appium server..
@@ -46,7 +46,7 @@ pipeline {
                         //} catch (Exception error) {
                         //unstable('Can not launch emulator...')
 						//}
-					}
+					//}
 				}
 			}
         stage('UI tests') {
