@@ -38,9 +38,9 @@ pipeline {
 					script {
 						//try {
 						// Launching appium server..
-						bat "appium_launcher.bat"
+						//bat "appium_launcher.bat"
 						// Launching android emulator..
-						bat "emulator_launcher.bat"
+						//bat "emulator_launcher.bat"
                         //} catch (Exception error) {
                         //unstable('Can not launch emulator...')
 						//}
