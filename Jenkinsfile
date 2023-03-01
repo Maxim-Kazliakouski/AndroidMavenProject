@@ -37,7 +37,7 @@ pipeline {
                 steps{
 					script {
 						//try {
-						// Launching android emulator
+						// Launching android emulator..
 						bat "emulator_launcher.bat"
                         //} catch (Exception error) {
                         //unstable('Can not launch emulator...')
