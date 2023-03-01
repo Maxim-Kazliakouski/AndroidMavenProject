@@ -3,41 +3,26 @@ package tests.base;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import com.github.romankh3.image.comparison.ImageComparison;
-import com.github.romankh3.image.comparison.ImageComparisonUtil;
-import com.github.romankh3.image.comparison.model.ImageComparisonResult;
-import com.github.romankh3.image.comparison.model.ImageComparisonState;
 //import config.ConfigReader;
-import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.qameta.allure.Allure;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import steps.LoginPageSteps;
 import steps.MainPageSteps;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+import java.io.*;
 
+import static com.codeborne.selenide.Selenide.sleep;
 import static helper.Constants.SCREENSHOT_TO_SAVE_FOLDER;
 import static helper.DeviceHelper.executeBash;
 import static helper.RunHelper.runHelper;
-import static io.appium.java_client.remote.AndroidMobileCapabilityType.APP_ACTIVITY;
-import static io.appium.java_client.remote.AndroidMobileCapabilityType.APP_PACKAGE;
-import static io.appium.java_client.remote.MobileCapabilityType.DEVICE_NAME;
-import static io.appium.java_client.remote.MobileCapabilityType.PLATFORM_VERSION;
 import static io.qameta.allure.Allure.step;
-import static org.openqa.selenium.remote.CapabilityType.BROWSER_NAME;
-import static org.openqa.selenium.remote.CapabilityType.PLATFORM_NAME;
 import static org.testng.Assert.assertEquals;
 
 @Log4j2
@@ -47,18 +32,29 @@ public abstract class BaseTest {
     public LoginPageSteps loginPageSteps;
     public MainPageSteps mainPageSteps;
     private RemoteWebDriver driver;
+    public Process appium;
+    public Process emulatorAndroid;
 
     @BeforeMethod
-    public void setup() throws MalformedURLException {
+    public void setup() throws IOException {
         //добавляем логирование действий для аллюр отчета в виде степов
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 //        // папка для сохранения скриншотов selenide
         Configuration.reportsFolder = SCREENSHOT_TO_SAVE_FOLDER;
+        // запуск appium
+        appium = Runtime.getRuntime().exec("C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\android\\appium_launcher.bat");
+        sleep(2000);
+        System.out.println("Appium is lunched!");
+        // запуск эмулятора
+        emulatorAndroid = Runtime.getRuntime().exec("C:\\Users\\Selecty\\AppData\\Local\\Android\\Sdk\\emulator\\emulator -avd Pixel_5_API_29  ");
+        sleep(2000);
+        System.out.println("Emulator is launched!");
         //инициализируем андройд драйвер
         Configuration.browser = runHelper().getDriverClass().getName();
         Configuration.startMaximized = false;
         Configuration.browserSize = null;
         Configuration.timeout = 5000;
+
         disableAnimationOnEmulator();
         // the list of pages with steps
         loginPageSteps = new LoginPageSteps();
@@ -66,17 +62,16 @@ public abstract class BaseTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
     }
 
-
-/**
- * Отключение анимаций на эмуляторе чтобы не лагало
- * <p>
- * Перед каждый тестом открываем приложение
- * <p>
- * Проверка скриншота с эталоном для проверки верстки
- *
-// * @param actualScreenshot актуальный скриншот
-// * @param expectedFileName название файла для сравнений
- */
+    /**
+     * Отключение анимаций на эмуляторе чтобы не лагало
+     * <p>
+     * Перед каждый тестом открываем приложение
+     * <p>
+     * Проверка скриншота с эталоном для проверки верстки
+     * <p>
+     * // * @param actualScreenshot актуальный скриншот
+     * // * @param expectedFileName название файла для сравнений
+     */
     private static void disableAnimationOnEmulator() {
         executeBash("adb -s shell settings put global transition_animation_scale 0.0");
         executeBash("adb -s shell settings put global window_animation_scale 0.0");
@@ -97,6 +92,12 @@ public abstract class BaseTest {
     @AfterMethod
     public void afterEach() {
         step("Закрыть приложение", Selenide::closeWebDriver);
+    }
+
+    @AfterClass
+    public void killingProcess() {
+        appium.destroy();
+        emulatorAndroid.destroy();
     }
 }
 
