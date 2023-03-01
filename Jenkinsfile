@@ -45,7 +45,7 @@ pipeline {
                         //} catch (Exception error) {
                         //unstable('Can not launch emulator...')
 						//}
-					//}
+					}
 				}
 			}
         stage('UI tests') {
