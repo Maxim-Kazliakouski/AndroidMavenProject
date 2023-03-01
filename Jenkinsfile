@@ -35,7 +35,7 @@ pipeline {
 
             stage('Launching android emulator'){
                 steps{
-					node {
+					node("special") {
 						//try {
 						// Launching appium server..
 						powershell 'Write-Output hello.ps1'
