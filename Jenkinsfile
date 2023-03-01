@@ -33,20 +33,22 @@ pipeline {
 //            }
 //        }
 
-            //stage('Launching android emulator'){
-            //    steps{
-			//		script {
+            stage('Launching android emulator'){
+                steps{
+					script {
 						//try {
+						sh 'pwsh --version'
 						// Launching appium server..
+						sh 'pwsh hello.ps1'
 						//bat "appium_launcher.bat"
 						// Launching android emulator..
 						//bat "emulator_launcher.bat"
                         //} catch (Exception error) {
                         //unstable('Can not launch emulator...')
 						//}
-			//		}
-			//	}
-			//}
+					}
+				}
+			}
         stage('UI tests') {
 
             steps {
