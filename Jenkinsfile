@@ -33,21 +33,17 @@ pipeline {
 //            }
 //        }
 
-            stage('Launching android emulator'){
-               // steps{
-					node("special") {
-						//try {
-						// Launching appium server..
-						powershell 'Write-Output hello.ps1'
-						//bat "appium_launcher.bat"
-						// Launching android emulator..
-						//bat "emulator_launcher.bat"
-                        //} catch (Exception error) {
-                        //unstable('Can not launch emulator...')
-						//}
+             stage('Launching android emulator'){
+                steps{
+                    script {
+                        node {
+						    // Launching appium server..
+						    powershell 'Write-Output hello.ps1'
+						}
 					}
-			    //}
-			}
+			    }
+			 }
+
         stage('UI tests') {
 
             steps {
