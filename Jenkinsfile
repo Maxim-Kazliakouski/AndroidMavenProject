@@ -37,6 +37,8 @@ pipeline {
                 steps{
 					script {
 						//try {
+						// Launching appium server..
+						bat "appium_launcher.bat"
 						// Launching android emulator..
 						bat "emulator_launcher.bat"
                         //} catch (Exception error) {
