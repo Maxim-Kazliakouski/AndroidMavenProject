@@ -34,7 +34,7 @@ pipeline {
 //        }
 
             stage('Launching android emulator'){
-                steps{
+               // steps{
 					node("special") {
 						//try {
 						// Launching appium server..
@@ -46,7 +46,7 @@ pipeline {
                         //unstable('Can not launch emulator...')
 						//}
 					}
-				}
+			    //}
 			}
         stage('UI tests') {
 
