@@ -33,9 +33,9 @@ pipeline {
 //            }
 //        }
 
-            stage('Launching android emulator'){
-                steps{
-					script {
+            //stage('Launching android emulator'){
+            //    steps{
+			//		script {
 						//try {
 						// Launching appium server..
 						//bat "appium_launcher.bat"
@@ -44,9 +44,9 @@ pipeline {
                         //} catch (Exception error) {
                         //unstable('Can not launch emulator...')
 						//}
-					}
-				}
-			}
+			//		}
+			//	}
+			//}
         stage('UI tests') {
 
             steps {
