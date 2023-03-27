@@ -1,6 +1,5 @@
-package helper;
+package pages.helper;
 
-//import config.ConfigReader;
 import config.TestPropertyReader;
 import driver.EmulatorDriver;
 
