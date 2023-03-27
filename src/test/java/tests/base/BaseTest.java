@@ -3,27 +3,21 @@ package tests.base;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-//import config.ConfigReader;
 import io.qameta.allure.Allure;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
+import steps.CartPageSteps;
 import steps.LoginPageSteps;
 import steps.MainPageSteps;
+import utils.PropertyReader;
 
-import java.io.*;
-
-import static com.codeborne.selenide.Selenide.sleep;
-import static helper.Constants.SCREENSHOT_TO_SAVE_FOLDER;
-import static helper.DeviceHelper.executeBash;
-import static helper.RunHelper.runHelper;
+import static pages.helper.Constants.SCREENSHOT_TO_SAVE_FOLDER;
+import static pages.helper.DeviceHelper.executeBash;
+import static pages.helper.RunHelper.runHelper;
 import static io.qameta.allure.Allure.step;
-import static org.testng.Assert.assertEquals;
 
 @Log4j2
 @Listeners(TestListener.class)
@@ -31,35 +25,28 @@ public abstract class BaseTest {
 
     public LoginPageSteps loginPageSteps;
     public MainPageSteps mainPageSteps;
-    private RemoteWebDriver driver;
-    public Process appium;
-    public Process emulatorAndroid;
+    public CartPageSteps cartPageSteps;
+    String username;
+    String password;
 
     @BeforeMethod
-    public void setup() throws IOException {
+    public void setup() {
         //добавляем логирование действий для аллюр отчета в виде степов
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 //        // папка для сохранения скриншотов selenide
         Configuration.reportsFolder = SCREENSHOT_TO_SAVE_FOLDER;
-        // запуск appium
-        appium = Runtime.getRuntime().exec("C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\android\\appium_launcher.bat");
-        sleep(2000);
-        System.out.println("Appium is lunched!");
-        // запуск эмулятора
-        emulatorAndroid = Runtime.getRuntime().exec("C:\\Users\\Selecty\\AppData\\Local\\Android\\Sdk\\emulator\\emulator -avd Pixel_5_API_29  ");
-        sleep(2000);
-        System.out.println("Emulator is launched!");
+        username = System.getProperty("USERNAME", PropertyReader.getProperty("qase.username"));
+        password = System.getProperty("PASSWORD", PropertyReader.getProperty("qase.password"));
         //инициализируем андройд драйвер
         Configuration.browser = runHelper().getDriverClass().getName();
         Configuration.startMaximized = false;
         Configuration.browserSize = null;
         Configuration.timeout = 5000;
-
         disableAnimationOnEmulator();
         // the list of pages with steps
         loginPageSteps = new LoginPageSteps();
         mainPageSteps = new MainPageSteps();
-        DesiredCapabilities capabilities = new DesiredCapabilities();
+        cartPageSteps = new CartPageSteps();
     }
 
     /**
@@ -83,7 +70,7 @@ public abstract class BaseTest {
      */
     @BeforeMethod
     public void startDriver() {
-        step("Открыть приложение", (Allure.ThrowableRunnableVoid) Selenide::open);
+        step("Opening the app...", (Allure.ThrowableRunnableVoid) Selenide::open);
     }
 
     /**
@@ -91,13 +78,7 @@ public abstract class BaseTest {
      */
     @AfterMethod
     public void afterEach() {
-        step("Закрыть приложение", Selenide::closeWebDriver);
-    }
-
-    @AfterClass
-    public void killingProcess() {
-        appium.destroy();
-        emulatorAndroid.destroy();
+        step("Closing the app...", Selenide::closeWebDriver);
     }
 }
 
