@@ -23,23 +23,23 @@ public class LoginTest extends BaseTest {
         loginPageSteps.
                 loginPageOpened();
     }
-//
-//    @TmsLink("case=2")
-//    @Description("Test for checking that user can login")
-//    @Test
-//    public void testLogin() {
-//        loginPageSteps
-//                .loginPageOpened()
-//                .userLogged();
-//    }
-//
-//    @TmsLink("case=3")
-//    @Description("Login by clicking on list of users")
-//    @Test(dataProvider = "loginCreds")
-//    public void loginWithDifferCreds(String username, String textAfterLogin) {
-//        loginPageSteps
-//                .loginPageOpened()
-//                .userLoggedWithDifferCreds(username)
-//                .isUserLogged(textAfterLogin);
-//    }
+
+    @TmsLink("case=2")
+    @Description("Test for checking that user can login")
+    @Test
+    public void testLogin() {
+        loginPageSteps
+                .loginPageOpened()
+                .userLogged();
+    }
+
+    @TmsLink("case=3")
+    @Description("Login by clicking on list of users")
+    @Test(dataProvider = "loginCreds")
+    public void loginWithDifferCreds(String username, String textAfterLogin) {
+        loginPageSteps
+                .loginPageOpened()
+                .userLoggedWithDifferCreds(username)
+                .isUserLogged(textAfterLogin);
+    }
 }
