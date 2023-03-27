@@ -1,4 +1,4 @@
-package helper;
+package pages.helper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -60,7 +60,9 @@ public class DeviceHelper {
                 }
                 message[0] += line + "\n"; //записываем строки в первый элемент массива
             }
-            System.out.println(message[0]);//выводим в консоль для дебагинга
+            if (!message[0].equals("")) {
+                System.out.println(message[0]);//выводим в консоль для дебагинга
+            }
         }).start();//стартуем поток
         try {
             p.waitFor();//ждем завершения потока
