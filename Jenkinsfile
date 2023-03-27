@@ -33,18 +33,18 @@ pipeline {
 //            }
 //        }
 
-             stage('Launching android emulator'){
-                steps{
-                    script {
-                        node {
-						    // Launching appium server..
-						    //powershell 'Write-Output hello.ps1'
-						    def msg = powershell(returnStdout: true, script: 'Write-Output hello.ps1')
-                            println msg
-						}
-					}
-			    }
-			 }
+//             stage('Launching android emulator'){
+//                steps{
+//                    script {
+//                        node {
+//						    // Launching appium server..
+//						    //powershell 'Write-Output hello.ps1'
+//						    def msg = powershell(returnStdout: true, script: 'Write-Output hello.ps1')
+//                            println msg
+//						}
+//					}
+//			    }
+//			 }
 
         stage('UI tests') {
 
