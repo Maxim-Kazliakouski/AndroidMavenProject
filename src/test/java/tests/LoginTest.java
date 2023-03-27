@@ -1,6 +1,7 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
@@ -15,6 +16,7 @@ public class LoginTest extends BaseTest {
         };
     }
 
+    @TmsLink("case=1")
     @Description("Test for checking that app is opened")
     @Test
     public void testAppOpen() {
@@ -22,6 +24,7 @@ public class LoginTest extends BaseTest {
                 loginPageOpened();
     }
 
+    @TmsLink("case=2")
     @Description("Test for checking that user can login")
     @Test
     public void testLogin() {
@@ -30,6 +33,7 @@ public class LoginTest extends BaseTest {
                 .userLogged();
     }
 
+    @TmsLink("case=3")
     @Description("Login by clicking on list of users")
     @Test(dataProvider = "loginCreds")
     public void loginWithDifferCreds(String username, String textAfterLogin) {
