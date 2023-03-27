@@ -2,17 +2,13 @@ package driver;
 
 import com.codeborne.selenide.WebDriverProvider;
 
-//import config.ConfigReader;
-import helper.ApkInfoHelper;
+import pages.helper.ApkInfoHelper;
 import config.EmulatorPropertyReader;
-import config.TestPropertyReader;
 import io.appium.java_client.android.AndroidDriver;
 
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
-import lombok.var;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import javax.annotation.Nonnull;
 
