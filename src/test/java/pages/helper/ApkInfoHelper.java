@@ -1,15 +1,13 @@
-package helper;
+package pages.helper;
 
-//import config.ConfigReader;
 import config.EmulatorPropertyReader;
-import config.TestPropertyReader;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static helper.DeviceHelper.*;
+import static pages.helper.DeviceHelper.*;
 
 /**
  * Класс помощник для извлечения информации из Apk файла через bash команды
