@@ -24,7 +24,7 @@ Configuration:
   Loggers:
     logger:
       -
-        name: consoleLoggerq
+        name: consoleLogger
         level: INFO
         additivity: true
         AppenderRef:
@@ -39,9 +39,10 @@ Configuration:
     Root:
       level: INFO
       AppenderRef:
-        #        for displaying type info in console
+        #        for displaying type info in console,
+        #        if we choose here INFO we get double comments in console
         - ref: consoleAppender
-          level: INFO
+          level: ERROR
         #        for displaying type info in logfile
         - ref: fileAppender
           level: INFO
