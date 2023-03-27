@@ -23,6 +23,7 @@
 hs_err_pid*
 
 # hidden files and folders
+AndroidMavenProject.iml
 allure-results/*
 .allure/*
 .idea/*
